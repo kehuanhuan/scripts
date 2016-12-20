@@ -10,19 +10,31 @@ echo "4.输入参数 exit 退出 \n";
 do {
    fwrite(STDOUT,"请输入参数:");
    $agr = trim(fgets(STDIN));
-
+   $time = null;
    switch($agr)
    {
 	case 'time_to_date':
-	    fwrite(STDOUT,"请输入时间戳:");
-            $time = trim(fgets(STDIN));
-	   echo date('Y-m-d H:i:s',$time)."\n";
-		break;
+	  while($time != 'exit')
+	  {
+	     fwrite(STDOUT,"请输入时间戳:");
+             $time = trim(fgets(STDIN));
+	     if($time == 'exit'){
+		continue;
+	     }
+	     echo date('Y-m-d H:i:s',$time)."\n";
+	  } 
+	break;
 	case 'date_to_time':
+	  while($time != 'exit')
+ 	  {
             fwrite(STDOUT,"请输入日期:");
             $time = trim(fgets(STDIN));
-           echo strtotime($time)."\n";
-		break;
+	    if($time == 'exit'){
+                continue;
+            }
+            echo strtotime($time)."\n";
+	  }
+	break;
 	case 'now_time':
            echo date('Y-m-d H:i:s')."\n";
 		break;
