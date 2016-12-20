@@ -1,3 +1,3 @@
 ##proxy
--install shadowsocks;
--install polipo;
+-install shadowsocks
+-install polipo
