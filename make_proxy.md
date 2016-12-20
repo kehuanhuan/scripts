@@ -1,2 +1,3 @@
-1.install shadowsocks;
-2.install polipo;
+##proxy
+-install shadowsocks;
+-install polipo;
