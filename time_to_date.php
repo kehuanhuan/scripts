@@ -22,7 +22,7 @@ do {
 		continue;
 	     }
 	     echo date('Y-m-d H:i:s',$time)."\n";
-	  } 
+	  }
 	break;
 	case 'date_to_time':
 	  while($time != 'exit')
