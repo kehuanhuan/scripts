@@ -2,7 +2,7 @@
 ### linux代理工具:
     - sudo apt-get install python-pip
     - pip install shadowsocks
-      - 如果要转http代理 sudo apt-get install polipo
+    - 如果要转http代理 sudo apt-get install polipo
 
 ### google 常用工具：
    - 代理工具：Proxy SwitchyOmega 
@@ -16,7 +16,10 @@
    
 ### sublime常用工具
    - 插件网址 ：https://packagecontrol.io/
-   
+  
+### https://dev.mysql.com/downloads/file/?id=468285 workbench
 
-
+### composer 
+    - 下载地址： https://getcomposer.org/download/
+    - 使用国内镜像 ：composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
