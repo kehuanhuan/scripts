@@ -6,7 +6,7 @@
    
 ### install sublime
    - sudo add-apt-repository ppa:webupd8team/sublime-text-3
-   - udo apt-get update
+   - sudo apt-get update
    - sudo apt-get install sublime-text-installer
    
 ### sublime常用工具
