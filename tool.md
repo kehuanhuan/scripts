@@ -1,4 +1,9 @@
 
+### linux代理工具:
+    - sudo apt-get install python-pip
+    - pip install shadowsocks
+      - 如果要转http代理 sudo apt-get install polipo
+
 ### google 常用工具：
    - 代理工具：Proxy SwitchyOmega 
    - 屏蔽广告工具：Adblock Plus
@@ -10,8 +15,8 @@
    - sudo apt-get install sublime-text-installer
    
 ### sublime常用工具
-  
-### linux代理工具:
-    - shadowsock + polipo
+   - 插件网址 ：https://packagecontrol.io/
+   
+
 
 
