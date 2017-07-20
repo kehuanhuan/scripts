@@ -16,7 +16,7 @@
    
 ### sublime常用工具
    - 插件网址 ：https://packagecontrol.io/
-  
+   -  markdown插件 ：OmniMarkupPreviewer
 ### workbench 下载地址
    - https://dev.mysql.com/downloads/file/?id=468285 workbench
 
