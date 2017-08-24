@@ -39,5 +39,10 @@ then
  method=$2
 fi
 
+if [ $2 == 'GET' ]
+then 
+curl -i -H "Accept: application/json" -G -d "$3" -X $method "http://$url"
+else
 curl -i -H "Accept: application/json" --data "$3" -X $method "http://$url"
+fi
 echo '\n'
