@@ -1,5 +1,11 @@
 {
     "require": {
         "guzzlehttp/guzzle": "^6.3"
+    },
+
+    "autoload":{
+        "files":[
+            "Common/functions.php"
+        ]
     }
 }
