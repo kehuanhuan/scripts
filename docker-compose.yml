@@ -1,0 +1,56 @@
+version: '2'
+
+services:
+
+  applications:
+    image: tianon/true
+    # 需要和本机地址适配最好新建自己的分支来处理
+    volumes:
+      - ~/Code/soap/management-frontend-lanqb:/var/www/webapp
+
+
+  # mysql 数据库服务
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+
+  # redis 服务，用作临时数据缓存
+  redis:
+    image: redis:latest
+    volumes:
+      - redis:/data
+    ports:
+      - "6379:6379"
+
+  # 测试项目
+  test-app:
+    image: docker-registry.khh.space/php-web-server
+    environment:
+      WEBROOT: '/var/www/test-app'
+      RUN_SCRIPTS: 1
+    extra_hosts:
+      - "dockerhost:192.168.31.44"
+    volumes_from:
+      - applications
+    ports:
+      - "8094:80"
+
+  workspace:
+    image: docker-registry.khh.space/workspace
+    volumes_from:
+      - applications
+    tty: true
+
+volumes:
+  mysql:
+    driver: "local"
+  redis:
+    driver: "local"
