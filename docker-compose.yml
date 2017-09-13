@@ -6,8 +6,7 @@ services:
     image: tianon/true
     # 需要和本机地址适配最好新建自己的分支来处理
     volumes:
-      - ~/Code/soap/management-frontend-lanqb:/var/www/webapp
-
+      - ~/MyCode/laravel-test:/var/www/laravel-test
 
   # mysql 数据库服务
   mysql:
@@ -15,7 +14,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3301:3306"
     environment:
       MYSQL_DATABASE: homestead
       MYSQL_USER: homestead
@@ -28,26 +27,19 @@ services:
     volumes:
       - redis:/data
     ports:
-      - "6379:6379"
+      - "6370:6379"
 
   # 测试项目
-  test-app:
-    image: docker-registry.khh.space/php-web-server
+  laravel-test:
+    image: docker-registry.khh.space:5000/php-web-server:v1.3
     environment:
-      WEBROOT: '/var/www/test-app'
-      RUN_SCRIPTS: 1
+      WEBROOT: '/var/www/laravel-test/public'
     extra_hosts:
-      - "dockerhost:192.168.31.44"
+      - "dockerhost:192.168.31.61"
     volumes_from:
       - applications
     ports:
-      - "8094:80"
-
-  workspace:
-    image: docker-registry.khh.space/workspace
-    volumes_from:
-      - applications
-    tty: true
+      - "8001:80"
 
 volumes:
   mysql:
