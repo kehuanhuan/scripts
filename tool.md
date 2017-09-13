@@ -44,6 +44,6 @@
 
 ### docker 相关
 
-    - 产看镜像列表 ```curl docker-registry.khh.space:5000/v2/_catalog```
-    - 查看具体镜像 ```docker-registry.khh.space:5000/v2/php-web-server/tags/list```
+    - 产看镜像列表 ``` javascript curl docker-registry.khh.space:5000/v2/_catalog```
+    - 查看具体镜像 ``` javascript docker-registry.khh.space:5000/v2/php-web-server/tags/list```
 
