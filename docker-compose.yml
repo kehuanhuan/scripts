@@ -4,7 +4,6 @@ services:
 
   applications:
     image: tianon/true
-    # 需要和本机地址适配最好新建自己的分支来处理
     volumes:
       - ~/MyCode/laravel-test:/var/www/laravel-test
 
@@ -40,6 +39,13 @@ services:
       - applications
     ports:
       - "8001:80"
+
+  # workspace
+  workspace:
+    image: docker-registry.khh.space:5000/workspace
+    volumes_from:
+      - applications
+    tty: true
 
 volumes:
   mysql:
