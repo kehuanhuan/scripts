@@ -36,13 +36,13 @@ fi
 
 if [ $2 ]
 then
- method=$2
+    method=$2
 fi
 
 if [ $2 == 'GET' ]
 then 
-curl -H "Accept: application/json" -G -d "$3" -X $method "http://$url"
+    curl -H "Accept: application/json;charset-UTF-8" -G -d "$3" -X $method "http://$url"
 else
-curl -i -H "Accept: application/json" --data "$3" -X $method "http://$url"
+    curl -H "Accept: application/json;charset=UTF-8" --data "$3" -X $method "http://$url"
 fi
 echo '\n'

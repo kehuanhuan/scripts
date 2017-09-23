@@ -6,6 +6,7 @@ services:
     image: tianon/true
     volumes:
       - ~/MyCode/laravel-test:/var/www/laravel-test
+      - ~/MyCode/laravel-client-one:/var/www/laravel-client-one
 
   # mysql 数据库服务
   mysql:
@@ -39,6 +40,18 @@ services:
       - applications
     ports:
       - "8001:80"
+
+    # 测试项目2
+  laravel-client-one:
+    image: docker-registry.khh.space:5000/php-web-server:v1.3
+    environment:
+      WEBROOT: '/var/www/laravel-client-one/public'
+    extra_hosts:
+      - "dockerhost:192.168.31.61"
+    volumes_from:
+      - applications
+    ports:
+      - "8002:80"
 
   # workspace
   workspace:
