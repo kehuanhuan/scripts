@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: UTF-8 -*- 
+# -*- coding: UTF-8 -*-
 import sys;
 import time;
 
@@ -18,7 +18,7 @@ while is_while:
     while time_stmp != 'ext':
       time_stmp = raw_input("请输入时间戳：");
       if time_stmp == 'ext':
-	print 'ext'
+  print 'ext'
       else:
         time_s = time.localtime(int(time_stmp));
         print time.strftime("%Y-%m-%d %H:%M:%S",time_s);
@@ -26,11 +26,11 @@ while is_while:
     while tmp != 'ext':
       tmp = raw_input("请输入日期（1970-01-01 00：00：00）：");
       if tmp == 'ext':
-	print 'ext'
+  print 'ext'
       else:
         print time.mktime(time.strptime(tmp,"%Y-%m-%d %H:%M:%S"));
   elif str == 'now_time':
       print time.time();
   elif str == 'ext':
-	sys.exit(0);
+  sys.exit(0);
 

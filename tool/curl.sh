@@ -27,7 +27,7 @@ useage="
 "
 
 if [ -z $1 ] ; then
-	exec echo "$useage"
+    exec echo "$useage"
 exit
 elif [ $1 ]
 then
@@ -39,10 +39,10 @@ then
     method=$2
 fi
 
-if [ $2 == 'GET' ]
-then 
-    curl -H "Accept: application/json;charset-UTF-8" -G -d "$3" -X $method "http://$url"
+if [ $method == 'GET' ]
+then
+    curl  -H "Accept: application/json;charset-UTF-8" -G -d "$3" -X $method "http://$url"
 else
-    curl -H "Accept: application/json;charset=UTF-8" --data "$3" -X $method "http://$url"
+    curl  -i -H "Accept: application/json;charset=UTF-8" --data "$3" -X $method "http://$url"
 fi
 echo '\n'
