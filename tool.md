@@ -40,6 +40,10 @@
 ### linux man
 
    - 网址 ： http://man.linuxde.net/
+  
+### 进程管理工具
+
+   - supervisord
 
 ### docker 相关
 
