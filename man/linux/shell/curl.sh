@@ -22,7 +22,7 @@ useage="
    #arg1 必填               '请求URL，如：www.fgcy.top'
    #arg2 可选（默认：POST） '请求方式, 如：POST'
    #arg3 可选               '请求参数：格式：name=abc&age=18&sex=男'
-   #arg4 可选  		    'header设置' ：如：'-H '
+   #arg4 可选             'header设置' ：如：'-H '
    --------------------
 "
 
