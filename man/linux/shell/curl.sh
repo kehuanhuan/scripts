@@ -41,8 +41,8 @@ fi
 
 if [ $method == 'GET' ]
 then
-    curl  -H "Accept: application/json;charset-UTF-8" -G -d "$3" -X $method "http://$url"
+    curl  -H "Accept: application/json;charset-UTF-8" -G -d "$3" -X $method "http://$url" | more
 else
-    curl  -i -H "Accept: application/json;charset=UTF-8" --data "$3" -X $method "http://$url"
+    curl  -i -H "Accept: application/json;charset=UTF-8" --data "$3" -X $method "http://$url" | more
 fi
 echo '\n'
