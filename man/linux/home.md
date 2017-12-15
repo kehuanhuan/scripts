@@ -9,3 +9,6 @@
     - pip install shadowsocks
     - 如果要转http代理 sudo apt-get install polipo
 
+
+
+
