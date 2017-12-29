@@ -4,64 +4,80 @@ services:
 
   applications:
     image: tianon/true
+    # 需要和本机地址适配最好新建自己的分支来处理
     volumes:
+      - ~/MyCode/FinePHP:/var/www/FinePHP
       - ~/MyCode/laravel-test:/var/www/laravel-test
-      - ~/MyCode/laravel-client-one:/var/www/laravel-client-one
+      - ~/MyCode/java-test:/var/www/java-test
 
-  # mysql 数据库服务
-  mysql:
-    image: mysql:5.7
-    volumes:
-      - mysql:/var/lib/mysql
-    ports:
-      - "3301:3306"
+  # 后台系统的前端服务
+  khh-test-server:
+    image: khhdocker/nginx-phpfpm
     environment:
-      MYSQL_DATABASE: homestead
-      MYSQL_USER: homestead
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: root
-
-  # redis 服务，用作临时数据缓存
-  redis:
-    image: redis:latest
-    volumes:
-      - redis:/data
+      WEBROOT: '/var/www/FinePHP/public'
+    extra_hosts:
+      # 替换为本机 IP
+      - "dockerhost:192.168.31.44"
+    volumes_from:
+      - applications
     ports:
-      - "6370:6379"
+      - "8801:80"
 
-  # 测试项目
-  laravel-test:
-    image: docker-registry.khh.space:5000/php-web-server:v1.3
+  # 后台系统的前端服务
+  laravel-test-server:
+    image: khhdocker/nginx-phpfpm
     environment:
       WEBROOT: '/var/www/laravel-test/public'
     extra_hosts:
-      - "dockerhost:192.168.31.61"
+      # 替换为本机 IP
+      - "dockerhost:192.168.31.44"
     volumes_from:
       - applications
     ports:
-      - "8001:80"
+      - "8802:80"
 
-    # 测试项目2
-  laravel-client-one:
-    image: docker-registry.khh.space:5000/php-web-server:v1.3
+  # 后台系统的前端服务
+  tomact-test-server:
+    image: vreddyperam/hdc3-vijay-tomact8:1
     environment:
-      WEBROOT: '/var/www/laravel-client-one/public'
+      WEBROOT: '/var/www/java-test'
     extra_hosts:
-      - "dockerhost:192.168.31.61"
+      # 替换为本机 IP
+      - "dockerhost:192.168.31.44"
     volumes_from:
       - applications
     ports:
-      - "8002:80"
+      - "8803:8080"
 
-  # workspace
+  # mysql 数据库服务
+  # mysql:
+  #   image: mysql:5.7
+  #   volumes:
+  #     - mysql:/var/lib/mysql
+  #   ports:
+  #     - "3301:3306"
+  #   environment:
+  #     MYSQL_DATABASE: homestead
+  #     MYSQL_USER: homestead
+  #     MYSQL_PASSWORD: secret
+  #     MYSQL_ROOT_PASSWORD: root
+
+  # redis 服务，用作临时数据缓存
+  # redis:
+  #   image: redis:latest
+  #   volumes:
+  #     - redis:/data
+  #   ports:
+  #     - "6380:6379"
+
   workspace:
-    image: docker-registry.khh.space:5000/workspace
+    image: khhdocker/workspace
     volumes_from:
       - applications
     tty: true
 
-volumes:
-  mysql:
-    driver: "local"
-  redis:
-    driver: "local"
+# volumes:
+#     mysql:
+#       driver: "local"
+#     redis:
+#       driver: "local"
