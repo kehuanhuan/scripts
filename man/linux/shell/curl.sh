@@ -15,6 +15,8 @@
 
 url=''
 method='POST'
+agr=''
+header=''
 useage="
    Usage: $0 agr1 agr2 agr3...
 
@@ -26,8 +28,22 @@ useage="
    --------------------
 "
 
+# 保存好原来的IFS的值，方便以后还原回来 处理参数中带空格
+PRE_IFS=$IFS
+# 设置IFS仅包括换行符
+IFS=$'\n'
+
+for arg in $@
+do
+
+    if [[ ${arg:0:2} == '-H' ]]; then
+        header="${arg:3:1000}"
+    fi
+
+done
+
 if [ -z $1 ] ; then
-    exec echo "$useage"
+  echo "$useage"
 exit
 elif [ $1 ]
 then
@@ -39,10 +55,8 @@ then
     method=$2
 fi
 
-if [ $method == 'GET' ]
-then
-    curl  -H "Accept: application/json;charset-UTF-8" -G -d "$3" -X $method "http://$url" | more
-else
-    curl  -i -H "Accept: application/json;charset=UTF-8" --data "$3" -X $method "http://$url" | more
-fi
+curl  -i -H "Accept: application/json" -H "$header" --data "$3" -X $method "http://$url"
+
 echo '\n'
+
+IFS=$PRE_IFS
