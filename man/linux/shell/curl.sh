@@ -55,7 +55,7 @@ then
     method=$2
 fi
 
-curl  -i -H "Accept: application/json" -H "$header" --data "$3" -X $method "http://$url"
+curl  -H "Accept: application/json" -H "$header" --data "$3" -X $method "http://$url"
 
 echo '\n'
 
