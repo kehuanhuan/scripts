@@ -14,9 +14,10 @@
 
 
 url=''
-method='POST'
+method='GET'
 agr=''
 header=''
+data=''
 useage="
    Usage: $0 agr1 agr2 agr3...
 
@@ -40,6 +41,10 @@ do
         header="${arg:3:1000}"
     fi
 
+    if [[ ${arg:0:2} == '-D' ]]; then
+       data="${arg:3:100}"
+    fi
+
 done
 
 if [ -z $1 ] ; then
@@ -55,7 +60,7 @@ then
     method=$2
 fi
 
-curl  -H "Accept: application/json" -H "$header" --data "$3" -X $method "http://$url"
+curl  -H "Accept: application/json" -H "$header" --data "$data" -X $method "http://$url"
 
 echo '\n'
 
