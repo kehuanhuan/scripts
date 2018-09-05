@@ -2,7 +2,6 @@
 
    - 网址 ： http://man.linuxde.net/
 
-
 ### linux代理工具:
 
     - sudo apt-get install python-pip

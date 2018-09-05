@@ -42,7 +42,7 @@ do
     fi
 
     if [[ ${arg:0:2} == '-D' ]]; then
-       data="${arg:3:100}"
+        data="${arg:3:100}"
     fi
 
 done
