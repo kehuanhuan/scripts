@@ -16,18 +16,72 @@
 url=''
 method='GET'
 agr=''
-header=''
+header="Accept: application/json"
+header1=''
+header2=''
 data=''
-useage="
-   Usage: $0 agr1 agr2 agr3...
+i=1
 
-   --------------说明------------
-   #arg1 必填               '请求URL，如：www.fgcy.top'
-   #arg2 可选（默认：POST） '请求方式, 如：POST'
-   #arg3 可选               '请求参数：格式：name=abc&age=18&sex=男'
-   #arg4 可选             'header设置' ：如：'-H '
-   --------------------
-"
+get_use_age ()
+{
+
+cat <<EOF
+
+    Usage: $0 -url= -M=
+
+    --------------说明------------
+    #-url 必填              '请求URL，如：www.fgcy.top'
+    #-M 可选（默认：GET） '请求方式, 如：POST'
+    #-D 可选               '请求参数：格式：name=abc&age=18&sex=男'
+    #-H 可选             'header设置' ：如：'-H='
+    --------------------
+
+EOF
+
+    exit 1
+}
+
+get_header_set ()
+{
+    s_header=$1
+
+    length=${#s_header}
+
+    if [[ $i == 1 ]] ; then
+       header1=${s_header:3:length}
+    elif [[ $i == 2 ]] ; then
+       header2=${s_header:3:length}
+    fi
+
+    i=`expr $i + 1`;
+}
+
+get_data_set ()
+{
+    data=$1
+
+    length=${#data}
+
+    data=${data:3:length}
+}
+
+get_url_set ()
+{
+    url=$1
+
+    length=${#url}
+
+    url=${url:5:length}
+}
+
+get_method_set ()
+{
+    method=$1
+
+    length=${#method}
+
+    method=${method:3:length}
+}
 
 # 保存好原来的IFS的值，方便以后还原回来 处理参数中带空格
 PRE_IFS=$IFS
@@ -37,31 +91,40 @@ IFS=$'\n'
 for arg in $@
 do
 
-    if [[ ${arg:0:2} == '-H' ]]; then
-        header="${arg:3:1000}"
-    fi
-
-    if [[ ${arg:0:2} == '-D' ]]; then
-        data="${arg:3:100}"
-    fi
+case $arg in
+  '-H'* )
+  get_header_set $arg;
+    ;;
+  '-D'* )
+  get_data_set $arg;
+    ;;
+  '-url'* )
+  get_url_set $arg;
+    ;;
+  '-M'* )
+  get_method_set $arg;
+    ;;
+esac
 
 done
 
-if [ -z $1 ] ; then
-  echo "$useage"
-exit
-elif [ $1 ]
-then
-  url=$1
+if test $# == 0;then
+get_use_age;
+exit 1;
 fi
 
-if [ $2 ]
-then
-    method=$2
+if [[ $header1 && $header2 ]]; then
+  curl -H $header -H $header1 -H $header2  --data "$data" -X $method $url
+elif [[ $header1 ]];then
+  curl -H $header -H $header1  --data "$data" -X $method $url
+elif [[ $header2 ]];then
+  curl -H $header -H $header2  --data "$data" -X $method $url
+else
+  curl -H $header --data "$data" -X $method $url
 fi
 
-curl  -H "Accept: application/json" -H "$header" --data "$data" -X $method "http://$url"
 
-echo '\n'
 
-IFS=$PRE_IFS
+
+
+
