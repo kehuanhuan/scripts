@@ -53,6 +53,7 @@ get_header_set ()
        header2=${s_header:3:length}
     fi
 
+
     i=`expr $i + 1`;
 }
 

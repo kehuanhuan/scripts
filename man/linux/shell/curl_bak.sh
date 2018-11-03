@@ -52,7 +52,6 @@ get_header_set ()
     elif [[ $i == 2 ]] ; then
        header2=${s_header:3:length}
     fi
-
     i=`expr $i + 1`;
 }
 
