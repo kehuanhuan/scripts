@@ -1,19 +1,7 @@
 <?php
 
-$a = 10;
-$v = &$a;
-$v1 = &$a;
+$a = $b = 1;
 
-echo $v;
-// $v = 123;
-// echo $a;  //123
+$b = 2;
 
-// $v1 = 234;
-// echo $a;  //234
-
-// $b = 000;
-// function foo(&$param) {
-//     $param = 123;
-// }
-// foo($b);
-// echo $b; //123;
+var_export($a);
