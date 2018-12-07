@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+
+  applications:
+    image: tianon/true
+    # 需要和本机地址适配最好新建自己的分支来处理
+    volumes:
+      - ~/MyCode/FinePHP:/var/www/fine-php
+
+
+  # etcd
+  etcd:
+    image: registry.cn-hangzhou.aliyuncs.com/aliware2018/alpine-etcd
+
+  # etcd-viewer
+  etcd-viewer:
+    image: nikfoundas/etcd-viewer
+    ports:
+      - "8080:8080"
+
+  #  consumer
+  consumer:
+    image: registry.cn-hangzhou.aliyuncs.com/aliware2018/agent-demo
+    ports:
+      - "81:8087"
+    command: consumer
+
+  #  provider-small
+  provider-small:
+    image: registry.cn-hangzhou.aliyuncs.com/aliware2018/agent-demo
+    command: provider-small
+
+  # provider-medium
+  # provider-medium:
+  #   image: registry.cn-hangzhou.aliyuncs.com/aliware2018/agent-demo
+  #   command: provider-medium
+
+  # # provider-large
+  # provider-large:
+  #   image: registry.cn-hangzhou.aliyuncs.com/aliware2018/agent-demo
+  #   command: provider-large
+
+
+  #fine php
+  # fine-php-server:
+  #   image: khhdocker/nginx-phpfpm
+  #   environment:
+  #     WEBROOT: '/var/www/fine-php/public'
+  #   volumes_from:
+  #     - applications
+  #   ports:
+  #     - "8002:80"
+
+  workspace:
+    image: khhdocker/workspace
+    volumes_from:
+      - applications
+    tty: true

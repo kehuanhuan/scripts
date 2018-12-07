@@ -114,6 +114,10 @@ get_use_age;
 exit 1;
 fi
 
+if test $method == 'GET';then
+  url=${url}"?"${data};
+fi
+
 if [[ $header1 && $header2 ]]; then
   curl -H $header -H $header1 -H $header2  --data "$data" -X $method $url
 elif [[ $header1 ]];then
