@@ -29,19 +29,17 @@ class obj implements ArrayAccess {
     public function offsetGet($offset) {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
+
+    public function __get($value)
+    {
+        return $this->offsetGet($value);
+    }
 }
 
 $obj = new obj;
 
-var_export($obj['twoo']);
+var_export($obj->two."\n");
+var_export($obj['two']."\n");
 
-var_dump(isset($obj["two"]));
-var_dump($obj["two"]);
-unset($obj["two"]);
-var_dump(isset($obj["two"]));
-$obj["two"] = "A value";
-var_dump($obj["two"]);
-$obj[] = 'Append 1';
-$obj[] = 'Append 2';
-$obj[] = 'Append 3';
-print_r($obj);
+
+
