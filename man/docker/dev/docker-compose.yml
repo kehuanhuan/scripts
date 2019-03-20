@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - nginx-proxy
+
+  whoami:
+    image: jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=whoami.local
+    networks:
+      - nginx-proxy
+
+  workspace:
+    image: registry.lt.com:5000/workspace
+    volumes:
+      - "./:/www/lt"
+    tty: true
+    networks:
+      - nginx-proxy
