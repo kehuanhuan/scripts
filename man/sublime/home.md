@@ -27,4 +27,14 @@ D5D52613 C3D12E98 BC49967F 7652EED2
 9D2D2E61 67610860 6D338B72 5CF95C69
 E36B85CC 84991F19 7575D828 470A92AB
 —— END LICENSE ——
+
 ```
+
+### package control config
+
+"channels":
+    [
+        "http://static.bolin.site/channel_v3.json",
+        //"https://packagecontrol.io/channel_v3.json",
+        //"https://web.archive.org/web/20160103232808/https://packagecontrol.io/channel_v3.json",
+    ],
