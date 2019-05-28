@@ -74,6 +74,6 @@ class Test
 
   $name->setName('name');
 
-  echo $name->getName();
+  echo $name->getName()
 
 
