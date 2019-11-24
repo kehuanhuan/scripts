@@ -1,21 +1,31 @@
-# -*- coding: utf-8 -*-
+# _*_ coding=utf-8 _*_
 
-import scrapy
+from turtle import *
 
-class ToScrapeCSSSpider(scrapy.Spider):
-    name = "toscrape-css"
-    start_urls = [
-        'http://quotes.toscrape.com/',
-    ]
+def makear():
+    # 设置笔刷宽度:
+    width(4)
 
-    def parse(self, response):
-        for quote in response.css("div.quote"):
-            yield {
-                'text': quote.css("span.text::text").extract_first(),
-                'author': quote.css("small.author::text").extract_first(),
-                'tags': quote.css("div.tags > a.tag::text").extract()
-            }
+    # 前进:
+    forward(200)
+    # 右转90度:
+    right(90)
 
-        next_page_url = response.css("li.next > a::attr(href)").extract_first()
-        if next_page_url is not None:
-            yield scrapy.Request(response.urljoin(next_page_url))
+    # 笔刷颜色:
+    pencolor('red')
+    forward(100)
+    right(90)
+
+    pencolor('green')
+    forward(200)
+    right(90)
+
+    pencolor('blue')
+    forward(100)
+    right(90)
+
+    # 调用done()使得窗口等待被关闭，否则将立刻关闭窗口:
+    done()
+
+if __name__ == '__main__':
+    makear()
